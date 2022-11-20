@@ -11,12 +11,18 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import CustomButton from "../components/atoms/Button";
 
 export default function Home() {
   return (
     <Background>
+      <Stack spacing={2} direction="row">
+        <Button>Hello World</Button>
+        <Button variant="text">Test</Button>
+        <Button variant="outlined">Click me</Button>
+        <Button variant="contained">Greetings</Button>
+      </Stack>
       <Card>
-        <XButton>Hello World</XButton>
         <Typography variant="body1">Hello World</Typography>
       </Card>
       <Stack spacing={2} direction="row">
@@ -37,36 +43,12 @@ export default function Home() {
       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-      <Tooltip title="Add" arrow>
-        <Button>Arrow</Button>
-      </Tooltip>
       <CircularProgress color="success" />
       <Skeleton />
       <Skeleton animation="wave" />
-      {/* <Popover
-        open={true}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-      >
-        The content of the Popover.
-      </Popover> */}
     </Background>
   );
 }
-
-const XButton = styled("button")`
-  border: 1px solid red;
-  padding: 1rem;
-  color: white;
-  background: #333;
-  cursor: pointer;
-`;
 
 const Background = styled("div")`
   /* background-color: #111; */
