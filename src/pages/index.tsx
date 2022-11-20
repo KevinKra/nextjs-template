@@ -12,11 +12,13 @@ import {
   Typography,
 } from "@mui/material";
 import CustomButton from "../components/atoms/Button";
+import UnitSnapshot from "../components/molecules/UnitSnapshot";
 
 export default function Home() {
   return (
     <Background>
-      <Stack spacing={2} direction="row">
+      <UnitSnapshot />
+      {/* <Stack spacing={2} direction="row">
         <Button>Hello World</Button>
         <Button variant="text">Test</Button>
         <Button variant="outlined">Click me</Button>
@@ -44,7 +46,7 @@ export default function Home() {
       <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
       <CircularProgress color="success" />
-      <Skeleton />
+      <Skeleton /> */}
       <Skeleton animation="wave" />
     </Background>
   );

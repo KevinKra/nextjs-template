@@ -24,6 +24,15 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           primary: {
             main: "#FE5366",
           },
+          success: {
+            main: "#69C55A",
+            light: "#BAE4B3",
+          },
+          error: {
+            main: "#E84B4B",
+            light: "#FFBCBC",
+          },
+
           // divider: amber[200],
           // text: {
           //   primary: grey[900],
