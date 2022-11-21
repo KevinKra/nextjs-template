@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon, Paper, styled, Typography } from "@mui/material";
+import { Button, css, Icon, Paper, styled, Typography } from "@mui/material";
 import StatusBar from "../StatusBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,10 +28,12 @@ interface IUnitSnapshot {
 const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
   return (
     <StyledPaper elevation={10}>
-      <AlertTab elevation={5}>
-        <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
-      </AlertTab>
-      <Header className="header">
+      {props.inError && (
+        <AlertTab elevation={5}>
+          <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
+        </AlertTab>
+      )}
+      <Header className="header" {...props}>
         <HealthMarker />
         <div className="header-content">
           <Typography variant="h5" fontWeight={600}>
@@ -65,8 +67,12 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
           />
         </div>
         <div className="footer">
-          {props.inError === false && (
-            <Typography variant="body2" className="unit-snapshot-optimal">
+          {props.inError ? (
+            <Typography variant="body2" className="error-status-msg">
+              systems suboptimal
+            </Typography>
+          ) : (
+            <Typography variant="body2" className="optimal-status-msg">
               all systems optimal
             </Typography>
           )}
@@ -91,15 +97,18 @@ const StyledPaper = styled(Paper)`
   border-radius: 20px;
   border-top-left-radius: 4px;
 
-  .unit-snapshot-optimal {
-    color: ${({ theme }) => theme.palette.grey[400]};
-  }
-
   .footer {
     display: grid;
     place-items: center;
     grid-template-columns: 1fr 1fr;
     margin-top: 2rem;
+  }
+
+  .error-status-msg,
+  .optimal-status-msg {
+    color: ${({ theme }) => theme.palette.grey[400]};
+    place-self: flex-start;
+    align-self: center;
   }
 
   .visit-unit-button {
@@ -108,12 +117,23 @@ const StyledPaper = styled(Paper)`
   }
 `;
 
-const Header = styled("div")`
-  background-color: ${({ theme }) => theme.palette.error.main};
+const Header = styled("div")<Partial<IUnitSnapshot>>`
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
-  color: ${({ theme }) => theme.palette.common.white};
+  background-color: ${({ theme }) => theme.palette.background.default};
+  color: ${({ theme }) => theme.palette.text.primary};
+  border: 1px solid ${({ theme }) => theme.palette.grey[200]};
+  border-bottom: none;
+
+  ${({ inError, theme }) =>
+    inError === true &&
+    css`
+      background-color: ${theme.palette.error.main};
+      color: ${theme.palette.common.white};
+      border: 1px solid ${theme.palette.error.main};
+      border-bottom: none;
+    `}
 
   .header-content {
     display: grid;
@@ -128,10 +148,19 @@ const Header = styled("div")`
   }
 `;
 
-const Main = styled("div")`
+const Main = styled("div")<Partial<IUnitSnapshot>>`
   padding: 1.5rem;
   padding-top: 2rem;
-  border: 1px solid ${({ theme }) => theme.palette.error.light};
+  border: 1px solid ${({ theme }) => theme.palette.grey[200]};
+  background-color: ${({ theme }) => theme.palette.background.default};
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  ${({ inError, theme }) =>
+    inError === true &&
+    css`
+      border: 1px solid ${theme.palette.error.light};
+    `}
 
   .unit-snapshot-status-bars {
     display: grid;
