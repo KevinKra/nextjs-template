@@ -8,7 +8,7 @@ interface IHealthMarker {
 }
 
 const HealthMarker = ({ ...props }: IHealthMarker) => {
-  return <Wrapper status={props.status} />;
+  return <Wrapper {...props} />;
 };
 
 export default HealthMarker;

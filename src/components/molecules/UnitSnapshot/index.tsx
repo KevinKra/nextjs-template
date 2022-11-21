@@ -8,6 +8,7 @@ import {
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import HealthMarker from "../../atoms/HealthMarker";
+import CircularButton from "../../atoms/CircularButton";
 
 export type statusTypes = "success" | "warning" | "error";
 
@@ -73,19 +74,20 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
         </div>
         <div className="footer">
           {props.inError ? (
-            <Typography variant="body2" className="error-status-msg">
-              systems suboptimal
-            </Typography>
+            <>
+              <Typography variant="body2" className="error-status-msg">
+                systems suboptimal
+              </Typography>
+              <CircularButton className="visit-unit-button" status="error" />
+            </>
           ) : (
-            <Typography variant="body2" className="optimal-status-msg">
-              all systems optimal
-            </Typography>
+            <>
+              <Typography variant="body2" className="optimal-status-msg">
+                all systems optimal
+              </Typography>
+              <CircularButton className="visit-unit-button" status="success" />
+            </>
           )}
-          <StyledButton className="visit-unit-button">
-            <Icon>
-              <FontAwesomeIcon icon={faArrowRight} size="2xs" />
-            </Icon>
-          </StyledButton>
         </div>
       </Main>
     </StyledPaper>
@@ -171,19 +173,6 @@ const Main = styled("div")<Partial<IUnitSnapshot>>`
     display: grid;
     grid-row-gap: 0.5rem;
   }
-`;
-
-// TODO - make component
-const StyledButton = styled(Button)`
-  span {
-    display: grid;
-    place-items: center;
-    color: ${({ theme }) => theme.palette.primary.main};
-  }
-
-  border: 1px solid ${({ theme }) => theme.palette.error.light};
-  padding: 1.25rem;
-  border-radius: 50%;
 `;
 
 // TODO - make component

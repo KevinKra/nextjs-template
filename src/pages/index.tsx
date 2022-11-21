@@ -11,7 +11,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import CustomButton from "../components/atoms/Button";
 import UnitSnapshot from "../components/molecules/UnitSnapshot";
 
 export default function Home() {
