@@ -1,10 +1,11 @@
 import React from "react";
 import { Typography, LinearProgress, styled, css } from "@mui/material";
+import { statusTypes } from "../UnitSnapshot";
 
 interface IStatusBar {
   title: string;
   value: number;
-  variant: "success" | "error";
+  variant: statusTypes;
 }
 
 const StatusBar = ({ ...props }: IStatusBar) => {
@@ -40,14 +41,13 @@ const StatusRow = styled("div")<IStatusBar>`
   grid-template-columns: 1fr 2.5rem;
   grid-column-gap: 1.25rem;
 
-  ${({ variant }) =>
-    variant === "error" &&
+  ${({ theme, variant }) =>
+    variant === ("error" || "warning") &&
     css`
       .status-bar-percentage {
-        color: #e84b4b;
+        color: ${theme.palette.error.main};
       }
     `}
-  /* border: 1px solid red; */
 
   .status-bar-percentage {
     place-self: flex-end;

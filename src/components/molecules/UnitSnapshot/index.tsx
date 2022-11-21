@@ -8,7 +8,24 @@ import {
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 
-const UnitSnapshot = () => {
+export type statusTypes = "success" | "warning" | "error";
+
+interface trackingStatus {
+  type: "water" | "pressure" | "energy";
+  value: number;
+  status: statusTypes;
+}
+
+interface IUnitSnapshot {
+  title: string;
+  uuid: string;
+  water: trackingStatus;
+  energy: trackingStatus;
+  pressure: trackingStatus;
+  inError: boolean;
+}
+
+const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
   return (
     <StyledPaper elevation={10}>
       <AlertTab elevation={5}>
@@ -18,7 +35,7 @@ const UnitSnapshot = () => {
         <HealthMarker />
         <div className="header-content">
           <Typography variant="h5" fontWeight={600}>
-            Unit #1
+            {props.title}
           </Typography>
           <FontAwesomeIcon
             className="fa-ellipsis-icon"
@@ -26,20 +43,34 @@ const UnitSnapshot = () => {
             size="lg"
             tabIndex={0}
           />
-          <Typography variant="body2">abcd-1234-efgh-4343</Typography>
+          <Typography variant="body2">{props.uuid}</Typography>
         </div>
       </Header>
       <Main>
         <div className="unit-snapshot-status-bars">
-          <StatusBar title="water" value={100} variant="success" />
-          <StatusBar title="energy" value={25} variant="error" />
-          <StatusBar title="pressure" value={68} variant="success" />
+          <StatusBar
+            title={props.water.type}
+            value={props.water.value}
+            variant={props.water.status}
+          />
+          <StatusBar
+            title={props.energy.type}
+            value={props.energy.value}
+            variant={props.energy.status}
+          />
+          <StatusBar
+            title={props.pressure.type}
+            value={props.pressure.value}
+            variant={props.pressure.status}
+          />
         </div>
         <div className="footer">
-          <Typography variant="body2" className="unit-snapshot-optimal">
-            all systems optimal
-          </Typography>
-          <StyledButton>
+          {props.inError === false && (
+            <Typography variant="body2" className="unit-snapshot-optimal">
+              all systems optimal
+            </Typography>
+          )}
+          <StyledButton className="visit-unit-button">
             <Icon>
               <FontAwesomeIcon icon={faArrowRight} size="2xs" />
             </Icon>
@@ -53,58 +84,36 @@ const UnitSnapshot = () => {
 export default UnitSnapshot;
 
 const StyledPaper = styled(Paper)`
-  margin: 5rem;
-
   position: relative;
   height: fit-content;
   width: 345px;
+  margin: 5rem;
   border-radius: 20px;
   border-top-left-radius: 4px;
 
   .unit-snapshot-optimal {
-    color: #c9c9c9;
+    color: ${({ theme }) => theme.palette.grey[400]};
   }
 
   .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
     margin-top: 2rem;
+  }
+
+  .visit-unit-button {
+    grid-column: 2/3;
+    place-self: flex-end;
   }
 `;
 
-// TODO - make component
-const AlertTab = styled(Paper)`
-  position: absolute;
-  top: -25px;
-  right: -25px;
-  border: 2px solid white;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background-color: #e84b4b;
-
-  display: grid;
-  place-items: center;
-  color: white;
-`;
-
-// TODO - make component
-const HealthMarker = styled("div")`
-  height: 6px;
-  width: 6px;
-  outline: 3px solid white;
-  border-radius: 50%;
-  background-color: #e84b4b;
-`;
-
 const Header = styled("div")`
-  background-color: #e84b4b;
+  background-color: ${({ theme }) => theme.palette.error.main};
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
-
-  color: white;
+  color: ${({ theme }) => theme.palette.common.white};
 
   .header-content {
     display: grid;
@@ -122,7 +131,7 @@ const Header = styled("div")`
 const Main = styled("div")`
   padding: 1.5rem;
   padding-top: 2rem;
-  border: 1px solid #ffbcbc;
+  border: 1px solid ${({ theme }) => theme.palette.error.light};
 
   .unit-snapshot-status-bars {
     display: grid;
@@ -130,14 +139,40 @@ const Main = styled("div")`
   }
 `;
 
+// TODO - make component
 const StyledButton = styled(Button)`
   span {
     display: grid;
     place-items: center;
-    color: #e84b4b;
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 
-  border: 1px solid #ffbcbc;
+  border: 1px solid ${({ theme }) => theme.palette.error.light};
   padding: 1.25rem;
   border-radius: 50%;
+`;
+
+// TODO - make component
+const AlertTab = styled(Paper)`
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  border: 2px solid ${({ theme }) => theme.palette.common.white};
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.palette.error.main};
+
+  display: grid;
+  place-items: center;
+  color: ${({ theme }) => theme.palette.common.white}; ;
+`;
+
+// TODO - make component
+const HealthMarker = styled("div")`
+  height: 6px;
+  width: 6px;
+  outline: 3px solid ${({ theme }) => theme.palette.common.white};
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.palette.error.main};
 `;

@@ -17,7 +17,22 @@ import UnitSnapshot from "../components/molecules/UnitSnapshot";
 export default function Home() {
   return (
     <Background>
-      <UnitSnapshot />
+      <UnitSnapshot
+        title="Unit #1"
+        uuid="abcd-1234-efgh-5678"
+        water={{ type: "water", value: 98, status: "success" }}
+        energy={{ type: "energy", value: 85, status: "success" }}
+        pressure={{ type: "pressure", value: 25, status: "error" }}
+        inError={true}
+      />
+      <UnitSnapshot
+        title="Unit #1"
+        uuid="abcd-1234-efgh-5678"
+        water={{ type: "water", value: 98, status: "success" }}
+        energy={{ type: "energy", value: 79, status: "success" }}
+        pressure={{ type: "pressure", value: 85, status: "success" }}
+        inError={false}
+      />
       {/* <Stack spacing={2} direction="row">
         <Button>Hello World</Button>
         <Button variant="text">Test</Button>
@@ -47,7 +62,6 @@ export default function Home() {
       <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
       <CircularProgress color="success" />
       <Skeleton /> */}
-    
     </Background>
   );
 }
