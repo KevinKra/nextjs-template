@@ -7,6 +7,7 @@ import {
   faEllipsisV,
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import HealthMarker from "../../atoms/HealthMarker";
 
 export type statusTypes = "success" | "warning" | "error";
 
@@ -34,7 +35,11 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
         </AlertTab>
       )}
       <Header className="header" {...props}>
-        <HealthMarker />
+        {props.inError ? (
+          <HealthMarker status="error" />
+        ) : (
+          <HealthMarker status="success" />
+        )}
         <div className="header-content">
           <Typography variant="h5" fontWeight={600}>
             {props.title}
@@ -195,13 +200,4 @@ const AlertTab = styled(Paper)`
   display: grid;
   place-items: center;
   color: ${({ theme }) => theme.palette.common.white}; ;
-`;
-
-// TODO - make component
-const HealthMarker = styled("div")`
-  height: 6px;
-  width: 6px;
-  outline: 3px solid ${({ theme }) => theme.palette.common.white};
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.palette.error.main};
 `;
