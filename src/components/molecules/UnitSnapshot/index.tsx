@@ -10,8 +10,8 @@ import {
 
 const UnitSnapshot = () => {
   return (
-    <StyledPaper elevation={5}>
-      <AlertTab elevation={10}>
+    <StyledPaper elevation={10}>
+      <AlertTab elevation={5}>
         <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
       </AlertTab>
       <Header className="header">
@@ -33,7 +33,7 @@ const UnitSnapshot = () => {
         <div className="unit-snapshot-status-bars">
           <StatusBar title="water" value={100} variant="success" />
           <StatusBar title="energy" value={25} variant="error" />
-          <StatusBar title="pressure" value={75} variant="success" />
+          <StatusBar title="pressure" value={68} variant="success" />
         </div>
         <div className="footer">
           <Typography variant="body2" className="unit-snapshot-optimal">
@@ -53,10 +53,11 @@ const UnitSnapshot = () => {
 export default UnitSnapshot;
 
 const StyledPaper = styled(Paper)`
+  margin: 5rem;
+
   position: relative;
   height: fit-content;
   width: 345px;
-  border: 1px solid #ffbcbc;
   border-radius: 20px;
   border-top-left-radius: 4px;
 
@@ -100,7 +101,7 @@ const HealthMarker = styled("div")`
 const Header = styled("div")`
   background-color: #e84b4b;
   padding: 1.5rem;
-  border-top-left-radius: 4px;
+  border-top-left-radius: 3px;
   border-top-right-radius: 20px;
 
   color: white;
@@ -121,6 +122,7 @@ const Header = styled("div")`
 const Main = styled("div")`
   padding: 1.5rem;
   padding-top: 2rem;
+  border: 1px solid #ffbcbc;
 
   .unit-snapshot-status-bars {
     display: grid;

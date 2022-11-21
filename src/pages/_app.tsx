@@ -10,6 +10,11 @@ import {
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../createEmotionCache";
 import { getDesignTokens } from "../theme";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+
+// ? Prevent fontawesome from dynamically adding its css -- prevents flicker
+config.autoAddCss = false;
 
 // ? Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
