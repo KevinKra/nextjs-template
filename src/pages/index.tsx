@@ -47,7 +47,7 @@ export default function Home() {
       <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
       <CircularProgress color="success" />
       <Skeleton /> */}
-      <Skeleton animation="wave" />
+    
     </Background>
   );
 }
