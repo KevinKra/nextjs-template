@@ -1,15 +1,29 @@
 import React from "react";
-import { Typography, LinearProgress, styled, css } from "@mui/material";
-import { statusTypes } from "../UnitSnapshot";
+import {
+  Typography,
+  LinearProgress,
+  styled,
+  css,
+  Skeleton,
+} from "@mui/material";
+import { ComponentStandards, statusTypes } from "../UnitSnapshot";
 
-interface IStatusBar {
+interface IStatusBar extends ComponentStandards {
   title: string;
   value: number;
   variant: statusTypes;
 }
 
 const StatusBar = ({ ...props }: IStatusBar) => {
-  return (
+  return props.loading ? (
+    <Wrapper className="loading-StatusBar">
+      <Skeleton variant="text" height={20} width={50} />
+      <StatusRow {...props}>
+        <Skeleton variant="text" height={20} />
+        <Skeleton variant="text" height={20} width={30} />
+      </StatusRow>
+    </Wrapper>
+  ) : (
     <Wrapper>
       <div>
         <Typography fontWeight="bold">{props.title}</Typography>

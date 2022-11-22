@@ -32,6 +32,15 @@ export default function Home() {
         pressure={{ type: "pressure", value: 85, status: "success" }}
         inError={false}
       />
+      <UnitSnapshot
+        loading={true}
+        title="Unit #1"
+        uuid="abcd-1234-efgh-5678"
+        water={{ type: "water", value: 98, status: "success" }}
+        energy={{ type: "energy", value: 79, status: "success" }}
+        pressure={{ type: "pressure", value: 85, status: "success" }}
+        inError={false}
+      />
       {/* <Stack spacing={2} direction="row">
         <Button>Hello World</Button>
         <Button variant="text">Test</Button>

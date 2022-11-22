@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, css, Icon, Paper, styled, Typography } from "@mui/material";
+import {
+  Button,
+  css,
+  Icon,
+  Paper,
+  Skeleton,
+  styled,
+  Typography,
+} from "@mui/material";
 import StatusBar from "../StatusBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,13 +20,17 @@ import CircularButton from "../../atoms/CircularButton";
 
 export type statusTypes = "success" | "warning" | "error";
 
+export interface ComponentStandards {
+  loading?: boolean;
+}
+
 interface trackingStatus {
   type: "water" | "pressure" | "energy";
   value: number;
   status: statusTypes;
 }
 
-interface IUnitSnapshot {
+interface IUnitSnapshot extends ComponentStandards {
   title: string;
   uuid: string;
   water: trackingStatus;
@@ -27,6 +39,7 @@ interface IUnitSnapshot {
   inError: boolean;
 }
 
+// TODO - footer is not elegant
 const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
   return (
     <StyledPaper elevation={4}>
@@ -35,43 +48,69 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
           <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
         </AlertTab>
       )}
-      <Header className="header" {...props}>
-        {props.inError ? (
-          <HealthMarker status="error" />
-        ) : (
-          <HealthMarker status="success" />
-        )}
-        <div className="header-content">
-          <Typography variant="h4">{props.title}</Typography>
-          <FontAwesomeIcon
-            className="fa-ellipsis-icon"
-            icon={faEllipsisV}
-            size="lg"
-            tabIndex={0}
-          />
-          <Typography variant="overline">{props.uuid}</Typography>
-        </div>
-      </Header>
+      {props.loading ? (
+        <Header className="header">
+          <Skeleton variant="circular" width={20} height={20} />
+          <Skeleton variant="text" height={40} />
+          <Skeleton variant="text" />
+        </Header>
+      ) : (
+        <Header className="header" {...props}>
+          {props.inError ? (
+            <HealthMarker status="error" />
+          ) : (
+            <HealthMarker status="success" />
+          )}
+          <div className="header-content">
+            <Typography variant="h4">{props.title}</Typography>
+            <FontAwesomeIcon
+              className="fa-ellipsis-icon"
+              icon={faEllipsisV}
+              size="lg"
+              tabIndex={0}
+            />
+            <Typography variant="overline">{props.uuid}</Typography>
+          </div>
+        </Header>
+      )}
       <Main>
         <div className="unit-snapshot-status-bars">
           <StatusBar
+            loading={props.loading}
             title={props.water.type}
             value={props.water.value}
             variant={props.water.status}
           />
           <StatusBar
+            loading={props.loading}
             title={props.energy.type}
             value={props.energy.value}
             variant={props.energy.status}
           />
           <StatusBar
+            loading={props.loading}
             title={props.pressure.type}
             value={props.pressure.value}
             variant={props.pressure.status}
           />
         </div>
         <div className="footer">
-          {props.inError ? (
+          {props.loading ? (
+            <>
+              <Skeleton
+                className="error-status-msg"
+                variant="text"
+                height={40}
+                width="100%"
+              />
+              <Skeleton
+                className="visit-unit-button"
+                variant="circular"
+                height={66}
+                width={66}
+              />
+            </>
+          ) : props.inError ? (
             <>
               <Typography variant="caption" className="error-status-msg">
                 systems suboptimal
