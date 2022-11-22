@@ -111,7 +111,7 @@ const StyledPaper = styled(Paper)`
 
   .error-status-msg,
   .optimal-status-msg {
-    color: ${({ theme }) => theme.palette.grey[400]};
+    color: ${({ theme }) => theme.palette.text.light};
     place-self: flex-start;
     align-self: center;
   }
@@ -122,20 +122,21 @@ const StyledPaper = styled(Paper)`
   }
 `;
 
+// border: 1px solid ${({ theme }) => theme.palette.b};
 const Header = styled("div")<Partial<IUnitSnapshot>>`
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
   background-color: ${({ theme }) => theme.palette.background.default};
   color: ${({ theme }) => theme.palette.text.primary};
-  border: 1px solid ${({ theme }) => theme.palette.grey[200]};
+  border: 1px solid ${({ theme }) => theme.palette.border.light};
   border-bottom: none;
 
   ${({ inError, theme }) =>
     inError === true &&
     css`
       background-color: ${theme.palette.error.main};
-      color: ${theme.palette.common.white};
+      color: ${theme.palette.text.inverse.primary};
       border: 1px solid ${theme.palette.error.main};
       border-bottom: none;
     `}
@@ -157,7 +158,7 @@ const Header = styled("div")<Partial<IUnitSnapshot>>`
 const Main = styled("div")<Partial<IUnitSnapshot>>`
   padding: 1.5rem;
   padding-top: 2rem;
-  border: 1px solid ${({ theme }) => theme.palette.grey[200]};
+  border: 1px solid ${({ theme }) => theme.palette.border.light};
   background-color: ${({ theme }) => theme.palette.background.default};
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;

@@ -44,7 +44,7 @@ const Wrapper = styled(Button)<ICircularButton>`
         `;
       default:
         return css`
-          border-color: ${theme.palette.grey[200]};
+          border-color: ${theme.palette.border.main};
           background-color: ${theme.palette.background.default};
           span {
             color: ${theme.palette.text.primary};

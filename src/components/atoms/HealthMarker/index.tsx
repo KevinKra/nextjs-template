@@ -1,7 +1,6 @@
 import React from "react";
 import { css, styled } from "@mui/material";
 import { statusTypes } from "../../molecules/UnitSnapshot";
-import { red } from "@mui/material/colors";
 
 interface IHealthMarker {
   status: statusTypes;

@@ -60,5 +60,5 @@ const StyledLinearProgress = styled(LinearProgress)`
   }
   height: 0.45rem;
   border-radius: 5px;
-  background-color: #d9d9d9;
+  background-color: ${({ theme }) => theme.palette.background.dark};
 `;

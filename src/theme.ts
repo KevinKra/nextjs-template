@@ -1,5 +1,11 @@
-import { PaletteMode, createTheme } from "@mui/material";
+import {
+  PaletteMode,
+  createTheme,
+  Shadows,
+  PaletteOptions,
+} from "@mui/material";
 import { amber, grey, deepOrange } from "@mui/material/colors";
+import { shadows } from "@mui/system";
 
 export const getDesignTokens = (mode: PaletteMode) => ({
   components: {
@@ -24,7 +30,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     "0px 6px 8px 0px rgba(0, 0, 0, 0.25)",
     "0px 15px 52px 15px rgba(50, 59, 82, 0.15)",
     ...Array(20).fill("none"),
-  ],
+  ] as Shadows,
   typography: {
     h1: {
       fontSize: 36,
@@ -88,6 +94,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
             dark: "#E04052",
           },
           text: {
+            light: "#BBBBBB",
             primary: "#212121",
             secondary: "#616161",
             inverse: {
@@ -111,6 +118,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           },
           background: {
             default: "#ffffff",
+            dark: "#D9D9D9",
           },
           border: {
             light: "#EFEFEF",
