@@ -12,7 +12,7 @@ const StatusBar = ({ ...props }: IStatusBar) => {
   return (
     <Wrapper>
       <div>
-        <Typography fontWeight={600}>{props.title}</Typography>
+        <Typography fontWeight="bold">{props.title}</Typography>
       </div>
       <StatusRow {...props}>
         <StyledLinearProgress

@@ -29,9 +29,9 @@ interface IUnitSnapshot {
 
 const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
   return (
-    <StyledPaper elevation={10}>
+    <StyledPaper elevation={4}>
       {props.inError && (
-        <AlertTab elevation={5}>
+        <AlertTab elevation={2}>
           <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
         </AlertTab>
       )}
@@ -42,16 +42,14 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
           <HealthMarker status="success" />
         )}
         <div className="header-content">
-          <Typography variant="h5" fontWeight={600}>
-            {props.title}
-          </Typography>
+          <Typography variant="h4">{props.title}</Typography>
           <FontAwesomeIcon
             className="fa-ellipsis-icon"
             icon={faEllipsisV}
             size="lg"
             tabIndex={0}
           />
-          <Typography variant="body2">{props.uuid}</Typography>
+          <Typography variant="overline">{props.uuid}</Typography>
         </div>
       </Header>
       <Main>
@@ -75,14 +73,14 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
         <div className="footer">
           {props.inError ? (
             <>
-              <Typography variant="body2" className="error-status-msg">
+              <Typography variant="caption" className="error-status-msg">
                 systems suboptimal
               </Typography>
               <CircularButton className="visit-unit-button" status="error" />
             </>
           ) : (
             <>
-              <Typography variant="body2" className="optimal-status-msg">
+              <Typography variant="caption" className="optimal-status-msg">
                 all systems optimal
               </Typography>
               <CircularButton className="visit-unit-button" status="success" />
@@ -145,8 +143,9 @@ const Header = styled("div")<Partial<IUnitSnapshot>>`
   .header-content {
     display: grid;
     grid-template-columns: 1fr auto;
+    grid-row-gap: 0.5rem;
+    margin-top: 1rem;
     align-items: center;
-    margin-top: 0.5rem;
   }
 
   .fa-ellipsis-icon {
