@@ -21,7 +21,6 @@ const StatusBar = ({ ...props }: IStatusBar) => {
           variant="determinate"
           value={props.value}
         />
-        <Typography className="statusBar-percentage">hello</Typography>
         <Typography className="statusBar-percentage">{props.value}%</Typography>
       </localStyles.StatusRow>
     </div>
