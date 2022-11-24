@@ -12,7 +12,7 @@ const HealthMarker = ({ ...props }: IHealthMarker) => {
 
 export default HealthMarker;
 
-const Wrapper = styled("div")<IHealthMarker>`
+const Wrapper = styled("div")<Pick<IHealthMarker, "status">>`
   height: 6px;
   width: 6px;
   border-radius: 50%;

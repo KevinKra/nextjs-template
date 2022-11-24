@@ -21,7 +21,7 @@ const CircularButton = ({ ...props }: ICircularButton) => {
 
 export default CircularButton;
 
-const Wrapper = styled(Button)<ICircularButton>`
+const Wrapper = styled(Button)<Pick<ICircularButton, "status">>`
   span {
     display: grid;
     place-items: center;

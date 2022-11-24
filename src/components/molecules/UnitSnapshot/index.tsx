@@ -39,8 +39,32 @@ interface IUnitSnapshot extends ComponentStandards {
   inError: boolean;
 }
 
-// TODO - footer is not elegant
 const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
+  // * Header
+  const HeaderContent = (
+    <>
+      <HealthMarker status={props.inError ? "error" : "success"} />
+      <div className="unitSnapshot-header-content">
+        <Typography variant="h4">{props.title}</Typography>
+        <FontAwesomeIcon
+          className="fa-ellipsis-icon"
+          icon={faEllipsisV}
+          size="lg"
+          tabIndex={0}
+        />
+        <Typography variant="overline">{props.uuid}</Typography>
+      </div>
+    </>
+  );
+  const HeaderContentLoading = (
+    <>
+      <Skeleton variant="circular" width={20} height={20} />
+      <Skeleton variant="text" height={40} />
+      <Skeleton variant="text" />
+    </>
+  );
+
+  // * Footer
   const FooterContent = (
     <>
       <Typography variant="caption" className="unitSnapshot-status-msg">
@@ -52,39 +76,35 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
       />
     </>
   );
+  const FooterContentLoading = (
+    <>
+      <Skeleton
+        className="unitSnapshot-status-msg"
+        variant="text"
+        height={20}
+        width="100%"
+      />
+      <Skeleton
+        className="unitSnapshot-visit-unit-button"
+        variant="circular"
+        height={66}
+        width={66}
+      />
+    </>
+  );
+
+  const ShowAlertTab = (
+    <AlertTab elevation={2}>
+      <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
+    </AlertTab>
+  );
 
   return (
     <StyledPaper elevation={4}>
-      {props.inError && (
-        <AlertTab elevation={2}>
-          <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
-        </AlertTab>
-      )}
-      {props.loading ? (
-        <Header className="header">
-          <Skeleton variant="circular" width={20} height={20} />
-          <Skeleton variant="text" height={40} />
-          <Skeleton variant="text" />
-        </Header>
-      ) : (
-        <Header className="header" {...props}>
-          {props.inError ? (
-            <HealthMarker status="error" />
-          ) : (
-            <HealthMarker status="success" />
-          )}
-          <div className="unitSnapshot-header-content">
-            <Typography variant="h4">{props.title}</Typography>
-            <FontAwesomeIcon
-              className="fa-ellipsis-icon"
-              icon={faEllipsisV}
-              size="lg"
-              tabIndex={0}
-            />
-            <Typography variant="overline">{props.uuid}</Typography>
-          </div>
-        </Header>
-      )}
+      {props.inError && ShowAlertTab}
+      <Header {...props}>
+        {props.loading ? HeaderContentLoading : HeaderContent}
+      </Header>
       <Main>
         <div className="unitSnapshot-status-bars">
           <StatusBar
@@ -106,26 +126,7 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
             variant={props.pressure.status}
           />
         </div>
-        <Footer>
-          {props.loading ? (
-            <>
-              <Skeleton
-                className="unitSnapshot-error-status-msg"
-                variant="text"
-                height={20}
-                width="100%"
-              />
-              <Skeleton
-                className="unitSnapshot-visit-unit-button"
-                variant="circular"
-                height={66}
-                width={66}
-              />
-            </>
-          ) : (
-            FooterContent
-          )}
-        </Footer>
+        <Footer>{props.loading ? FooterContentLoading : FooterContent}</Footer>
       </Main>
     </StyledPaper>
   );
@@ -142,7 +143,7 @@ const StyledPaper = styled(Paper)`
   border-top-left-radius: 4px;
 `;
 
-const Header = styled("div")<Partial<IUnitSnapshot>>`
+const Header = styled("div")<Pick<IUnitSnapshot, "inError">>`
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
