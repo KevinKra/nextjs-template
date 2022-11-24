@@ -41,6 +41,18 @@ interface IUnitSnapshot extends ComponentStandards {
 
 // TODO - footer is not elegant
 const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
+  const FooterContent = (
+    <>
+      <Typography variant="caption" className="unitSnapshot-status-msg">
+        {props.inError ? "systems suboptimal" : "systems optimal"}
+      </Typography>
+      <CircularButton
+        className="unitSnapshot-visit-unit-button"
+        status={props.inError ? "error" : "success"}
+      />
+    </>
+  );
+
   return (
     <StyledPaper elevation={4}>
       {props.inError && (
@@ -61,7 +73,7 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
           ) : (
             <HealthMarker status="success" />
           )}
-          <div className="header-content">
+          <div className="unitSnapshot-header-content">
             <Typography variant="h4">{props.title}</Typography>
             <FontAwesomeIcon
               className="fa-ellipsis-icon"
@@ -74,7 +86,7 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
         </Header>
       )}
       <Main>
-        <div className="unit-snapshot-status-bars">
+        <div className="unitSnapshot-status-bars">
           <StatusBar
             loading={props.loading}
             title={props.water.type}
@@ -94,38 +106,26 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
             variant={props.pressure.status}
           />
         </div>
-        <div className="footer">
+        <Footer>
           {props.loading ? (
             <>
               <Skeleton
-                className="error-status-msg"
+                className="unitSnapshot-error-status-msg"
                 variant="text"
-                height={40}
+                height={20}
                 width="100%"
               />
               <Skeleton
-                className="visit-unit-button"
+                className="unitSnapshot-visit-unit-button"
                 variant="circular"
                 height={66}
                 width={66}
               />
             </>
-          ) : props.inError ? (
-            <>
-              <Typography variant="caption" className="error-status-msg">
-                systems suboptimal
-              </Typography>
-              <CircularButton className="visit-unit-button" status="error" />
-            </>
           ) : (
-            <>
-              <Typography variant="caption" className="optimal-status-msg">
-                all systems optimal
-              </Typography>
-              <CircularButton className="visit-unit-button" status="success" />
-            </>
+            FooterContent
           )}
-        </div>
+        </Footer>
       </Main>
     </StyledPaper>
   );
@@ -140,28 +140,8 @@ const StyledPaper = styled(Paper)`
   margin: 5rem;
   border-radius: 20px;
   border-top-left-radius: 4px;
-
-  .footer {
-    display: grid;
-    place-items: center;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 2rem;
-  }
-
-  .error-status-msg,
-  .optimal-status-msg {
-    color: ${({ theme }) => theme.palette.text.light};
-    place-self: flex-start;
-    align-self: center;
-  }
-
-  .visit-unit-button {
-    grid-column: 2/3;
-    place-self: flex-end;
-  }
 `;
 
-// border: 1px solid ${({ theme }) => theme.palette.b};
 const Header = styled("div")<Partial<IUnitSnapshot>>`
   padding: 1.5rem;
   border-top-left-radius: 3px;
@@ -170,6 +150,7 @@ const Header = styled("div")<Partial<IUnitSnapshot>>`
   color: ${({ theme }) => theme.palette.text.primary};
   border: 1px solid ${({ theme }) => theme.palette.border.light};
   border-bottom: none;
+  height: 120px;
 
   ${({ inError, theme }) =>
     inError === true &&
@@ -180,7 +161,7 @@ const Header = styled("div")<Partial<IUnitSnapshot>>`
       border-bottom: none;
     `}
 
-  .header-content {
+  .unitSnapshot-header-content {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-row-gap: 0.5rem;
@@ -201,6 +182,7 @@ const Main = styled("div")<Partial<IUnitSnapshot>>`
   background-color: ${({ theme }) => theme.palette.background.default};
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  height: 300px;
 
   ${({ inError, theme }) =>
     inError === true &&
@@ -208,9 +190,27 @@ const Main = styled("div")<Partial<IUnitSnapshot>>`
       border: 1px solid ${theme.palette.error.light};
     `}
 
-  .unit-snapshot-status-bars {
+  .unitSnapshot-status-bars {
     display: grid;
     grid-row-gap: 0.5rem;
+  }
+`;
+
+const Footer = styled("div")`
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+
+  .unitSnapshot-status-msg {
+    color: ${({ theme }) => theme.palette.text.light};
+    place-self: flex-start;
+    align-self: center;
+  }
+
+  .unitSnapshot-visit-unit-button {
+    grid-column: 2/3;
+    place-self: flex-end;
   }
 `;
 

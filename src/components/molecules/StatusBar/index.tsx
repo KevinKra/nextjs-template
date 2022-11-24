@@ -16,11 +16,16 @@ interface IStatusBar extends ComponentStandards {
 
 const StatusBar = ({ ...props }: IStatusBar) => {
   return props.loading ? (
-    <Wrapper className="loading-StatusBar">
+    <Wrapper>
       <Skeleton variant="text" height={20} width={50} />
-      <StatusRow {...props}>
+      <StatusRow variant={props.variant}>
         <Skeleton variant="text" height={20} />
-        <Skeleton variant="text" height={20} width={30} />
+        <Skeleton
+          className="statusBar-percentage"
+          variant="text"
+          height={20}
+          width={30}
+        />
       </StatusRow>
     </Wrapper>
   ) : (
@@ -28,15 +33,13 @@ const StatusBar = ({ ...props }: IStatusBar) => {
       <div>
         <Typography fontWeight="bold">{props.title}</Typography>
       </div>
-      <StatusRow {...props}>
+      <StatusRow variant={props.variant}>
         <StyledLinearProgress
           color={props.variant}
           variant="determinate"
           value={props.value}
         />
-        <Typography className="status-bar-percentage">
-          {props.value}%
-        </Typography>
+        <Typography className="statusBar-percentage">{props.value}%</Typography>
       </StatusRow>
     </Wrapper>
   );
@@ -49,7 +52,7 @@ const Wrapper = styled("div")`
   grid-template-rows: auto auto;
 `;
 
-const StatusRow = styled("div")<IStatusBar>`
+const StatusRow = styled("div")<Pick<IStatusBar, "variant">>`
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 2.5rem;
@@ -58,12 +61,12 @@ const StatusRow = styled("div")<IStatusBar>`
   ${({ theme, variant }) =>
     variant === ("error" || "warning") &&
     css`
-      .status-bar-percentage {
+      .statusBar-percentage {
         color: ${theme.palette.error.main};
       }
     `}
 
-  .status-bar-percentage {
+  .statusBar-percentage {
     place-self: flex-end;
   }
 `;
