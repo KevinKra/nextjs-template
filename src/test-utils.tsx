@@ -1,6 +1,5 @@
 import { render, RenderOptions } from "@testing-library/react";
 import { createTheme, ThemeProvider } from "@mui/material";
-// import { theme } from "./pages/_app";
 import { FC } from "react";
 import { getDesignTokens } from "./theme";
 

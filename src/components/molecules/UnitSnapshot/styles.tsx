@@ -10,7 +10,7 @@ const StyledPaper = styled(Paper)`
   border-top-left-radius: 4px;
 `;
 
-const Header = styled("div")<Pick<IUnitSnapshot, "inError">>`
+const Header = styled("div")<Pick<IUnitSnapshot, "inError" | "loading">>`
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
@@ -20,8 +20,9 @@ const Header = styled("div")<Pick<IUnitSnapshot, "inError">>`
   border-bottom: none;
   height: 120px;
 
-  ${({ inError, theme }) =>
+  ${({ inError, loading, theme }) =>
     inError === true &&
+    !loading &&
     css`
       background-color: ${theme.palette.error.main};
       color: ${theme.palette.text.inverse.primary};
