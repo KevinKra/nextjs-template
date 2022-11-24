@@ -10,8 +10,8 @@ import {
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../createEmotionCache";
 import { getDesignTokens } from "../theme";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 // ? Prevent fontawesome from dynamically adding its css -- prevents flicker
 config.autoAddCss = false;
@@ -22,6 +22,9 @@ const clientSideEmotionCache = createEmotionCache();
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
+
+// * used in testing
+export let theme: any;
 
 export default function App({ Component, pageProps }: MyAppProps) {
   const [mode, setMode] = React.useState<PaletteMode>("light");
@@ -37,7 +40,7 @@ export default function App({ Component, pageProps }: MyAppProps) {
   //   []
   // );
 
-  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   // Update the theme only if the mode changes
   return (
