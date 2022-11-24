@@ -75,7 +75,6 @@ describe("UnitSnapshot", () => {
         pressure={{ type: "pressure", value: 85, status: "success" }}
       />
     );
-    screen.debug();
     expect(
       screen.getAllByTestId(/statusBar-loading/i).length
     ).toBeGreaterThanOrEqual(1);

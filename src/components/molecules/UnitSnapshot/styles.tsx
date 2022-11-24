@@ -1,5 +1,6 @@
 import { Paper, styled, css } from "@mui/material";
 import { IUnitSnapshot } from ".";
+import { shouldForwardProp } from "../../../utils/emotion";
 
 const StyledPaper = styled(Paper)`
   position: relative;
@@ -10,7 +11,13 @@ const StyledPaper = styled(Paper)`
   border-top-left-radius: 4px;
 `;
 
-const Header = styled("div")<Pick<IUnitSnapshot, "inError" | "loading">>`
+const Header = styled("div", {
+  shouldForwardProp: (prop) =>
+    shouldForwardProp<Pick<IUnitSnapshot, "inError" | "loading">>(
+      ["inError", "loading"],
+      prop
+    ),
+})<Pick<IUnitSnapshot, "inError" | "loading">>`
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
