@@ -11,7 +11,7 @@ export interface IStatusBar extends ComponentStandards {
 
 const StatusBar = ({ ...props }: IStatusBar) => {
   const StatusBarContent = (
-    <>
+    <div>
       <div>
         <Typography fontWeight="bold">{props.title}</Typography>
       </div>
@@ -23,11 +23,11 @@ const StatusBar = ({ ...props }: IStatusBar) => {
         />
         <Typography className="statusBar-percentage">{props.value}%</Typography>
       </localStyles.StatusRow>
-    </>
+    </div>
   );
 
   const StatusBarContentLoading = (
-    <>
+    <div data-testid="statusBar-loading">
       <Skeleton variant="text" height={20} width={50} />
       <localStyles.StatusRow variant={props.variant}>
         <Skeleton variant="text" height={20} />
@@ -38,7 +38,7 @@ const StatusBar = ({ ...props }: IStatusBar) => {
           width={30}
         />
       </localStyles.StatusRow>
-    </>
+    </div>
   );
 
   return (
