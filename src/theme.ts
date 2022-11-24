@@ -1,13 +1,6 @@
-import {
-  PaletteMode,
-  createTheme,
-  Shadows,
-  PaletteOptions,
-} from "@mui/material";
-import { amber, grey, deepOrange } from "@mui/material/colors";
-import { shadows } from "@mui/system";
+import { PaletteMode, Shadows, ThemeOptions } from "@mui/material";
 
-export const getDesignTokens = (mode: PaletteMode) => ({
+export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   components: {
     // Name of the component
     MuiButton: {
