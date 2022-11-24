@@ -1,8 +1,8 @@
-import React from "react";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, css, Icon, styled } from "@mui/material";
-import { statusTypes } from "../../molecules/UnitSnapshot";
+import React from 'react';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, css, Icon, styled } from '@mui/material';
+import { statusTypes } from '../../molecules/UnitSnapshot';
 
 interface ICircularButton {
   className: string;
@@ -21,7 +21,7 @@ const CircularButton = ({ ...props }: ICircularButton) => {
 
 export default CircularButton;
 
-const Wrapper = styled(Button)<Pick<ICircularButton, "status">>`
+const Wrapper = styled(Button)<Pick<ICircularButton, 'status'>>`
   span {
     display: grid;
     place-items: center;
@@ -34,7 +34,7 @@ const Wrapper = styled(Button)<Pick<ICircularButton, "status">>`
 
   ${({ status, theme }) => {
     switch (status) {
-      case "error":
+      case 'error':
         return css`
           border-color: ${theme.palette.error.light};
           background-color: ${theme.palette.background.default};

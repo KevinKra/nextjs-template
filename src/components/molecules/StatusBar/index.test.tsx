@@ -1,33 +1,33 @@
-import StatusBar from ".";
-import { render, screen, within } from "../../../test-utils";
+import StatusBar from '.';
+import { render, screen } from '../../../test-utils';
 
-describe("StatusBar", () => {
-  test("it loads", () => {
+describe('StatusBar', () => {
+  test('it loads', () => {
     render(<StatusBar title="test" value={15} variant="success" />);
     expect(screen.getByText(/test/i)).toBeInTheDocument();
     expect(screen.getByText(/15/i)).toBeInTheDocument();
     expect(screen.getByRole(/progressbar/i)).toBeInTheDocument();
   });
 
-  it("renders a success version", () => {
+  it('renders a success version', () => {
     render(<StatusBar title="test" value={15} variant="success" />);
     expect(screen.getByText(/test/i)).toBeInTheDocument();
     expect(screen.getByText(/15/i)).toBeInTheDocument();
     expect(screen.getByRole(/progressbar/i)).toHaveClass(
-      "MuiLinearProgress-colorSuccess"
+      'MuiLinearProgress-colorSuccess'
     );
   });
 
-  it("renders an error version", () => {
+  it('renders an error version', () => {
     render(<StatusBar title="test" value={15} variant="error" />);
     expect(screen.getByText(/test/i)).toBeInTheDocument();
     expect(screen.getByText(/15/i)).toBeInTheDocument();
     expect(screen.getByRole(/progressbar/i)).toHaveClass(
-      "MuiLinearProgress-colorError"
+      'MuiLinearProgress-colorError'
     );
   });
 
-  it("renders a loading version", () => {
+  it('renders a loading version', () => {
     render(
       <StatusBar title="test" value={15} variant="success" loading={true} />
     );

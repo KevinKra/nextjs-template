@@ -1,6 +1,6 @@
-import React from "react";
-import { css, styled } from "@mui/material";
-import { statusTypes } from "../../molecules/UnitSnapshot";
+import React from 'react';
+import { css, styled } from '@mui/material';
+import { statusTypes } from '../../molecules/UnitSnapshot';
 
 interface IHealthMarker {
   status: statusTypes;
@@ -12,7 +12,7 @@ const HealthMarker = ({ ...props }: IHealthMarker) => {
 
 export default HealthMarker;
 
-const Wrapper = styled("div")<Pick<IHealthMarker, "status">>`
+const Wrapper = styled('div')<Pick<IHealthMarker, 'status'>>`
   height: 6px;
   width: 6px;
   border-radius: 50%;
@@ -21,17 +21,17 @@ const Wrapper = styled("div")<Pick<IHealthMarker, "status">>`
 
   ${({ status, theme }) => {
     switch (status) {
-      case "success":
+      case 'success':
         return css`
           outline-color: ${theme.palette.success.light};
           background-color: ${theme.palette.success.main};
         `;
-      case "warning":
+      case 'warning':
         return css`
           outline-color: ${theme.palette.warning.light};
           background-color: ${theme.palette.warning.light};
         `;
-      case "error":
+      case 'error':
         return css`
           outline-color: ${theme.palette.background.default};
           background-color: ${theme.palette.error.main};

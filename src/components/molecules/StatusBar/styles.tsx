@@ -1,19 +1,19 @@
-import { LinearProgress, styled, css } from "@mui/material";
-import { IStatusBar } from ".";
+import { LinearProgress, styled, css } from '@mui/material';
+import { IStatusBar } from '.';
 
-const Wrapper = styled("div")`
+const Wrapper = styled('div')`
   display: grid;
   grid-template-rows: auto auto;
 `;
 
-const StatusRow = styled("div")<Pick<IStatusBar, "variant">>`
+const StatusRow = styled('div')<Pick<IStatusBar, 'variant'>>`
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 2.5rem;
   grid-column-gap: 1.25rem;
 
   ${({ theme, variant }) =>
-    variant === ("error" || "warning") &&
+    variant === ('error' || 'warning') &&
     css`
       .statusBar-percentage {
         color: ${theme.palette.error.main};
@@ -37,5 +37,5 @@ const StyledLinearProgress = styled(LinearProgress)`
 export const localStyles = {
   Wrapper,
   StatusRow,
-  StyledLinearProgress,
+  StyledLinearProgress
 };

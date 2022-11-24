@@ -1,7 +1,7 @@
-import React from "react";
-import { Typography, Skeleton } from "@mui/material";
-import { ComponentStandards, statusTypes } from "../UnitSnapshot";
-import { localStyles } from "./styles";
+import React from 'react';
+import { Typography, Skeleton } from '@mui/material';
+import { ComponentStandards, statusTypes } from '../UnitSnapshot';
+import { localStyles } from './styles';
 
 export interface IStatusBar extends ComponentStandards {
   title: string;

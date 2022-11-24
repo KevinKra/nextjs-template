@@ -1,3 +1,56 @@
+// https://www.jacobparis.com/blog/bug-parser-options
+// see ./tsconfig.json includes array
+
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:testing-library/react",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "jest",
+    "testing-library",
+    "prettier"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/unbound-method": 0,
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unsafe-call": "error",
+    "@typescript-eslint/no-unsafe-return": "warn",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "prettier/prettier": ["error"]
+  },
+  "ignorePatterns": ["jest.config.js", "next.config.js", "**/*.d.ts"],
+  "overrides": [
+    {
+      "files": ["**/styles.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unsafe-return": "off"
+      }
+    }
+  ]
 }

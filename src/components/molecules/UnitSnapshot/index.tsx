@@ -1,24 +1,21 @@
-import React from "react";
-import { Skeleton, Typography } from "@mui/material";
-import StatusBar from "../StatusBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEllipsisV,
-  faCircleExclamation,
-} from "@fortawesome/free-solid-svg-icons";
-import HealthMarker from "../../atoms/HealthMarker";
-import CircularButton from "../../atoms/CircularButton";
-import { localStyles } from "./styles";
-import NoticeWidget from "../NoticeWidget";
+import React from 'react';
+import { Skeleton, Typography } from '@mui/material';
+import StatusBar from '../StatusBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import HealthMarker from '../../atoms/HealthMarker';
+import CircularButton from '../../atoms/CircularButton';
+import { localStyles } from './styles';
+import NoticeWidget from '../NoticeWidget';
 
-export type statusTypes = "success" | "warning" | "error";
+export type statusTypes = 'success' | 'warning' | 'error';
 
 export interface ComponentStandards {
   loading?: boolean;
 }
 
 interface trackingStatus {
-  type: "water" | "pressure" | "energy";
+  type: 'water' | 'pressure' | 'energy';
   value: number;
   status: statusTypes;
 }
@@ -36,7 +33,7 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
   // * Header
   const HeaderContent = (
     <>
-      <HealthMarker status={props.inError ? "error" : "success"} />
+      <HealthMarker status={props.inError ? 'error' : 'success'} />
       <div className="unitSnapshot-header-content">
         <Typography variant="h4">{props.title}</Typography>
         <FontAwesomeIcon
@@ -61,11 +58,11 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
   const FooterContent = (
     <>
       <Typography variant="caption" className="unitSnapshot-status-msg">
-        {props.inError ? "systems suboptimal" : "systems optimal"}
+        {props.inError ? 'systems suboptimal' : 'systems optimal'}
       </Typography>
       <CircularButton
         className="unitSnapshot-visit-unit-button"
-        status={props.inError ? "error" : "success"}
+        status={props.inError ? 'error' : 'success'}
       />
     </>
   );

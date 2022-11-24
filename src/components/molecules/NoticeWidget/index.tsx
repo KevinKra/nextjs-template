@@ -1,10 +1,10 @@
-import React from "react";
-import { styled, css, Paper } from "@mui/material";
-import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { styled, css, Paper } from '@mui/material';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface INoticeWidget {
-  position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
+  position?: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 }
 
 /**
@@ -21,7 +21,7 @@ const NoticeWidget = ({ ...props }: INoticeWidget) => {
 
 export default NoticeWidget;
 
-const Wrapper = styled(Paper)<Pick<INoticeWidget, "position">>`
+const Wrapper = styled(Paper)<Pick<INoticeWidget, 'position'>>`
   display: grid;
   place-items: center;
   height: 50px;
@@ -33,25 +33,25 @@ const Wrapper = styled(Paper)<Pick<INoticeWidget, "position">>`
 
   ${({ position }) => {
     switch (position) {
-      case "topLeft":
+      case 'topLeft':
         return css`
           position: absolute;
           top: -25px;
           left: -25px;
         `;
-      case "topRight":
+      case 'topRight':
         return css`
           position: absolute;
           top: -25px;
           right: -25px;
         `;
-      case "bottomLeft":
+      case 'bottomLeft':
         return css`
           position: absolute;
           bottom: -25px;
           left: -25px;
         `;
-      case "bottomRight":
+      case 'bottomRight':
         return css`
           position: absolute;
           bottom: -25px;

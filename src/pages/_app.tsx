@@ -1,17 +1,19 @@
-import React from "react";
-import Head from "next/head";
-import type { AppProps } from "next/app";
+import React from 'react';
+import Head from 'next/head';
+import type { AppProps } from 'next/app';
 import {
   createTheme,
   CssBaseline,
   PaletteMode,
-  ThemeProvider,
-} from "@mui/material";
-import { CacheProvider, EmotionCache } from "@emotion/react";
-import createEmotionCache from "../createEmotionCache";
-import { getDesignTokens } from "../theme";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+  ThemeOptions,
+  ThemeProvider
+} from '@mui/material';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import createEmotionCache from '../createEmotionCache';
+import { getDesignTokens } from '../theme';
+
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 // ? Prevent fontawesome from dynamically adding its css -- prevents flicker
 config.autoAddCss = false;
@@ -23,11 +25,11 @@ interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-// * used in testing
-export let theme: any;
+// * setup for testing support
+export let theme: ThemeOptions;
 
 export default function App({ Component, pageProps }: MyAppProps) {
-  const [mode, setMode] = React.useState<PaletteMode>("light");
+  const [mode] = React.useState<PaletteMode>('light');
   // const colorMode = React.useMemo(
   //   () => ({
   //     // The dark mode switch would invoke this method

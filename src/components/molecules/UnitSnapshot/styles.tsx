@@ -1,6 +1,6 @@
-import { Paper, styled, css } from "@mui/material";
-import { IUnitSnapshot } from ".";
-import { shouldForwardProp } from "../../../utils/emotion";
+import { Paper, styled, css } from '@mui/material';
+import { IUnitSnapshot } from '.';
+import { shouldForwardProp } from '../../../utils/emotion';
 
 const StyledPaper = styled(Paper)`
   position: relative;
@@ -11,13 +11,13 @@ const StyledPaper = styled(Paper)`
   border-top-left-radius: 4px;
 `;
 
-const Header = styled("div", {
-  shouldForwardProp: (prop) =>
-    shouldForwardProp<Pick<IUnitSnapshot, "inError" | "loading">>(
-      ["inError", "loading"],
+const Header = styled('div', {
+  shouldForwardProp: prop =>
+    shouldForwardProp<Pick<IUnitSnapshot, 'inError' | 'loading'>>(
+      ['inError', 'loading'],
       prop
-    ),
-})<Pick<IUnitSnapshot, "inError" | "loading">>`
+    )
+})<Pick<IUnitSnapshot, 'inError' | 'loading'>>`
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
@@ -51,7 +51,7 @@ const Header = styled("div", {
   }
 `;
 
-const Main = styled("div")<Partial<IUnitSnapshot>>`
+const Main = styled('div')<Partial<IUnitSnapshot>>`
   padding: 1.5rem;
   padding-top: 2rem;
   border: 1px solid ${({ theme }) => theme.palette.border.light};
@@ -72,7 +72,7 @@ const Main = styled("div")<Partial<IUnitSnapshot>>`
   }
 `;
 
-const Footer = styled("div")`
+const Footer = styled('div')`
   display: grid;
   place-items: center;
   grid-template-columns: 1fr 1fr;
@@ -94,5 +94,5 @@ export const localStyles = {
   StyledPaper,
   Header,
   Main,
-  Footer,
+  Footer
 };
