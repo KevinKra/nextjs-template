@@ -90,26 +90,9 @@ const Footer = styled("div")`
   }
 `;
 
-// TODO - make component
-const AlertTab = styled(Paper)`
-  position: absolute;
-  top: -25px;
-  right: -25px;
-  border: 2px solid ${({ theme }) => theme.palette.common.white};
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.palette.error.main};
-
-  display: grid;
-  place-items: center;
-  color: ${({ theme }) => theme.palette.common.white}; ;
-`;
-
 export const localStyles = {
   StyledPaper,
   Header,
   Main,
   Footer,
-  AlertTab,
 };

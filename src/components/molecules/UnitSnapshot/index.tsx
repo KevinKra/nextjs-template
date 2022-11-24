@@ -9,6 +9,7 @@ import {
 import HealthMarker from "../../atoms/HealthMarker";
 import CircularButton from "../../atoms/CircularButton";
 import { localStyles } from "./styles";
+import NoticeWidget from "../NoticeWidget";
 
 export type statusTypes = "success" | "warning" | "error";
 
@@ -85,15 +86,9 @@ const UnitSnapshot = ({ ...props }: IUnitSnapshot) => {
     </>
   );
 
-  const ShowAlertTab = (
-    <localStyles.AlertTab elevation={2} data-testid="AlertTab">
-      <FontAwesomeIcon icon={faCircleExclamation} size="lg" />
-    </localStyles.AlertTab>
-  );
-
   return (
     <localStyles.StyledPaper elevation={4}>
-      {props.inError && !props.loading && ShowAlertTab}
+      {props.inError && !props.loading && <NoticeWidget position="topRight" />}
       <localStyles.Header {...props}>
         {props.loading ? HeaderContentLoading : HeaderContent}
       </localStyles.Header>
