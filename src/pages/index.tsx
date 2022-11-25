@@ -1,30 +1,16 @@
-import { Box, IconButton, styled } from '@mui/material';
+import { styled } from '@mui/material';
+import dynamic from 'next/dynamic';
 import UnitSnapshot from '../components/molecules/UnitSnapshot';
-import { toggleThemeMode } from '../PageProvider';
+
+// * lazy load to avoid SSR mismatch
+const ThemeToggle = dynamic(() => import('../components/atoms/ThemeToggle'), {
+  ssr: false
+});
 
 export default function Home() {
   return (
     <Background>
-      <Box
-        sx={{
-          display: 'flex',
-          width: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          bgcolor: 'background.default',
-          color: 'text.primary',
-          borderRadius: 1,
-          p: 3
-        }}
-      >
-        <IconButton
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          onClick={() => toggleThemeMode()}
-          color="inherit"
-        >
-          click me
-        </IconButton>
-      </Box>
+      <ThemeToggle />
       <UnitSnapshot
         title="Unit #1"
         uuid="abcd-1234-efgh-5678"
