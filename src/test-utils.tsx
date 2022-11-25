@@ -1,12 +1,9 @@
 import { render, RenderOptions } from '@testing-library/react';
-import { createTheme, ThemeProvider } from '@mui/material';
 import { FC } from 'react';
-import { getDesignTokens } from './theme';
-
-const theme = createTheme(getDesignTokens('light'));
+import PageProvider from './PageProvider';
 
 const AllTheProviders: FC<{ children: JSX.Element }> = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return <PageProvider>{children}</PageProvider>;
 };
 
 const customRender = (
