@@ -2,16 +2,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { ReactNode, createContext, useContext } from 'react';
-import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { getDesignTokens } from './theme';
 import useDarkMode from 'use-dark-mode';
 
 interface PageProviderProps {
   children: ReactNode;
 }
-
-// * setup for testing support
-export let theme: ThemeOptions;
 
 type ThemeContext = {
   currentMode: string;
@@ -35,7 +32,7 @@ const PageProvider = ({ children }: PageProviderProps) => {
   }, []);
 
   // * used in testing
-  theme = React.useMemo(
+  const theme = React.useMemo(
     () => createTheme(getDesignTokens(themeMode)),
     [themeMode]
   );
