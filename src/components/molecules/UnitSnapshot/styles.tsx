@@ -18,10 +18,11 @@ const Header = styled('div', {
       prop
     )
 })<Pick<IUnitSnapshot, 'inError' | 'loading'>>`
+  transition: background-color 0.25s ease-in;
   padding: 1.5rem;
   border-top-left-radius: 3px;
   border-top-right-radius: 20px;
-  background-color: ${({ theme }) => theme.palette.background.default};
+  background-color: ${({ theme }) => theme.palette.background.paper};
   color: ${({ theme }) => theme.palette.text.primary};
   border: 1px solid ${({ theme }) => theme.palette.border.light};
   border-bottom: none;
@@ -52,10 +53,11 @@ const Header = styled('div', {
 `;
 
 const Main = styled('div')<Partial<IUnitSnapshot>>`
+  transition: background-color 0.25s ease-in;
   padding: 1.5rem;
   padding-top: 2rem;
   border: 1px solid ${({ theme }) => theme.palette.border.light};
-  background-color: ${({ theme }) => theme.palette.background.default};
+  background-color: ${({ theme }) => theme.palette.background.paper};
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   height: 300px;

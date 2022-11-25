@@ -111,6 +111,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           },
           background: {
             default: '#ffffff',
+            paper: '#ffffff',
             dark: '#D9D9D9'
           },
           border: {
@@ -120,7 +121,45 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           }
         }
       : {
-          // future dark values
+          // palette values for dark mode
+          primary: {
+            light: '#FF7988',
+            main: '#FE5366',
+            dark: '#E04052'
+          },
+          text: {
+            // light: '#BBBBBB',
+            primary: '#ffffff',
+            // secondary: '#616161',
+            inverse: {
+              primary: '#ffffff',
+              secondary: '#E0E0E0'
+            }
+          },
+          // success: {
+          //   light: '#BAE4B3',
+          //   main: '#69C55A',
+          //   dark: '#62A857'
+          // },
+          // error: {
+          //   light: '#FFBCBC',
+          //   main: '#E84B4B',
+          //   dark: '#CF4242'
+          // },
+          // common: {
+          //   white: '#ffffff',
+          //   black: '#000000'
+          // },
+          background: {
+            default: '#0A1929',
+            paper: '#001E3C',
+            dark: '#D9D9D9'
+          },
+          border: {
+            light: '#5090D3',
+            main: '#D9D9D9',
+            dark: '#979797'
+          }
         })
   }
 });

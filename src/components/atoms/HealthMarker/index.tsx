@@ -33,7 +33,7 @@ const Wrapper = styled('div')<Pick<IHealthMarker, 'status'>>`
         `;
       case 'error':
         return css`
-          outline-color: ${theme.palette.background.default};
+          outline-color: ${theme.palette.common.white};
           background-color: ${theme.palette.error.main};
         `;
       default:
