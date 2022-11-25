@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React, { ReactNode } from 'react';
+import React, { ReactNode, createContext, useContext } from 'react';
 import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material';
 import { getDesignTokens } from './theme';
 import useDarkMode from 'use-dark-mode';
@@ -12,47 +12,23 @@ interface PageProviderProps {
 
 // * setup for testing support
 export let theme: ThemeOptions;
-// export let colorMode: { toggleColorMode: () => void };
-export let toggleThemeMode: () => void;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-// export const ColorModeContext = React.createContext({
-//   toggleColorMode: () => {}
-// });
+type ThemeContext = {
+  currentMode: string;
+  toggleColorMode: () => void;
+};
+export const ThemeContext = createContext<ThemeContext>({
+  currentMode: 'dark',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  toggleColorMode: () => {}
+});
+export const useThemeContext = () => useContext(ThemeContext);
 
 const PageProvider = ({ children }: PageProviderProps) => {
-  //   const darkMode = useDarkMode(false);
-  //   const themeMode = darkMode.value ? 'dark' : 'light';
-  //   console.log(themeMode, darkMode);
-
-  //   const [mode, setMode] = React.useState<PaletteMode>(themeMode);
-
-  //   colorMode = darkMode.toggle();
-
-  //   colorMode = React.useMemo(
-  //     () => ({
-  //       // The dark mode switch would invoke this method
-  //       toggleColorMode: () => {
-  //         darkMode.toggle();
-  //         // setMode((prevMode: PaletteMode) =>
-  //         //   prevMode === 'light' ? 'dark' : 'light'
-  //         // );
-  //       }
-  //     }),
-  //     [darkMode]
-  //   );
-
-  //   theme = React.useMemo(
-  //     () => createTheme(getDesignTokens(darkMode.value)),
-  //     [darkMode.value]
-  //   );
-
   const darkMode = useDarkMode(false);
   const themeMode = darkMode.value ? 'dark' : 'light';
 
   const [mounted, setMounted] = React.useState(false);
-
-  toggleThemeMode = darkMode.toggle;
 
   React.useEffect(() => {
     setMounted(true);
@@ -64,7 +40,13 @@ const PageProvider = ({ children }: PageProviderProps) => {
     [themeMode]
   );
 
-  const body = <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  const body = (
+    <ThemeContext.Provider
+      value={{ currentMode: themeMode, toggleColorMode: darkMode.toggle }}
+    >
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </ThemeContext.Provider>
+  );
 
   // prevents ssr flash for mismatched dark mode
   if (!mounted) {
