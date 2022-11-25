@@ -44,7 +44,12 @@
     "jest/valid-expect": "error",
     "prettier/prettier": ["error"]
   },
-  "ignorePatterns": ["jest.config.js", "next.config.js", "**/*.d.ts"],
+  "ignorePatterns": [
+    "jest.config.js",
+    "next.config.js",
+    "**/*.d.ts",
+    "public/noflash.js"
+  ],
   "overrides": [
     {
       "files": ["**/styles.tsx"],

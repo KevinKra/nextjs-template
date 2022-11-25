@@ -1,6 +1,6 @@
 import { Box, IconButton, styled } from '@mui/material';
 import UnitSnapshot from '../components/molecules/UnitSnapshot';
-import { colorMode, theme } from '../PageProvider';
+import { toggleThemeMode } from '../PageProvider';
 
 export default function Home() {
   return (
@@ -17,13 +17,12 @@ export default function Home() {
           p: 3
         }}
       >
-        {theme.palette?.mode} mode
         <IconButton
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          onClick={colorMode.toggleColorMode}
+          onClick={() => toggleThemeMode()}
           color="inherit"
         >
-          {theme.palette?.mode === 'dark' ? 'dark' : 'light'}
+          click me
         </IconButton>
       </Box>
       <UnitSnapshot

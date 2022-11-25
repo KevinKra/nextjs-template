@@ -1,11 +1,13 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>...</Head>
+        <Head />
         <body>
+          <Script src="noflash.js" />
           <Main />
           <NextScript />
         </body>
@@ -13,3 +15,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default MyDocument;
