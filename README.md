@@ -1,8 +1,12 @@
-# Notice 🚀
+# Welcome 🚀
 
-Documentation can be found in the Wiki! 📝
+Documentation can be found in the [Wiki](https://github.com/WaggaFoods/Wagga-Client/wiki)! 📝
+
+This app serves as the internal facing tracking tool used to monitor grow operations.
 
 ---
+
+# NextJS Guide
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
