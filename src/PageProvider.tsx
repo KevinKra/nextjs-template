@@ -11,7 +11,7 @@ interface PageProviderProps {
 }
 
 type ThemeContext = {
-  currentMode: string;
+  currentMode: 'dark' | 'light';
   toggleColorMode: () => void;
 };
 export const ThemeContext = createContext<ThemeContext>({

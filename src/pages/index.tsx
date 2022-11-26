@@ -1,16 +1,11 @@
 import { styled } from '@mui/material';
-import dynamic from 'next/dynamic';
+import TopNav from '../components/molecules/TopNav';
 import UnitSnapshot from '../components/molecules/UnitSnapshot';
-
-// * lazy load to avoid SSR mismatch
-const ThemeToggle = dynamic(() => import('../components/atoms/ThemeToggle'), {
-  ssr: false
-});
 
 export default function Home() {
   return (
     <Background>
-      <ThemeToggle />
+      <TopNav />
       <UnitSnapshot
         title="Unit #1"
         uuid="abcd-1234-efgh-5678"
