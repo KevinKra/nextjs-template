@@ -1,8 +1,8 @@
 # Welcome 🚀
 
-Documentation can be found in the [Wiki](https://github.com/WaggaFoods/Wagga-Client/wiki)! 📝
+template example for NextJS
 
-This app serves as the internal facing tracking tool used to monitor grow operations.
+`npm i legacy-peer-deps` (dark mode package uses older version of react) + `npm run dev`
 
 ---
 
